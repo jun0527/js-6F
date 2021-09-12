@@ -19,13 +19,14 @@ let gameLv;
 //按下開始按鈕到gamePage頁
 startBtn.forEach((item, index) => {
   item.addEventListener('click', () => {
-    if (index === 0) {
+    switch (index) {
       //開始頁按鈕
-      // resetGame();
-      startPage.setAttribute('class', 'js-startPage startPage d-none');
-    } else if (index === 1) {
-      //結束頁按鈕
-      endPage.setAttribute('class', 'js-endPage endPage d-none');
+      case 0:
+        startPage.setAttribute('class', 'js-startPage startPage d-none');
+        break;
+      case 1:
+        endPage.setAttribute('class', 'js-endPage endPage d-none');
+        break;
     }
     gamePage.setAttribute('class', 'js-gamePage gamePage');
     resetGame();
@@ -38,10 +39,12 @@ function reciprocal() {
   setInterval(() => {
     totalTime--;
     timeTxt.textContent = `00 : ${totalTime < 10 ? '0' + totalTime : totalTime}`;
-    if (totalTime === 0) {
-      gamePage.setAttribute('class', 'js-gamePage gamePage d-none');
-      endPage.setAttribute('class', 'js-endPage endPage');
-      finalScore.textContent = totalScore;
+    switch (totalTime) {
+      case 0:
+        gamePage.setAttribute('class', 'js-gamePage gamePage d-none');
+        endPage.setAttribute('class', 'js-endPage endPage');
+        finalScore.textContent = totalScore;
+        break;
     }
   }, 1000)
 }
@@ -75,27 +78,36 @@ function gameStart() {
   numArr[0].textContent = numA;
   //運算符號
   let symbol;
-  if (numA === 0) {
-    symbol = random(1);
-    if (symbol === 1) {
-      symbol = 2;
-    }
-    symbolArea.textContent = symbolArr[symbol];
-  } else {
-    symbol = random(3);
-    symbolArea.textContent = symbolArr[symbol];
+  switch (numA) {
+    case 0:
+      symbol = random(1);
+      switch (symbol) {
+        case 1:
+          symbol = 2;
+          break;
+      }
+      symbolArea.textContent = symbolArr[symbol];
+      break;
+    default:
+      symbol = random(3);
+      symbolArea.textContent = symbolArr[symbol];
+      break;
   }
   //第二個數字
-  if (symbol === 3) {
+  switch (symbol) {
     //當為除法時，第一個數字一定會被第二個整除(篩出符合位數的因數)
-    let factorArr = getAllFactor(numA).filter((item) => {
-      return item >= delNum;
-    });
-    numB = factorArr[random(factorArr.length-1)];
-  } else if (symbol === 1) {
-    numB = random(numA - delNum) + delNum;
-  } else {
-    numB = random(totalNum) + delNum;
+    case 3:
+      let factorArr = getAllFactor(numA).filter((item) => {
+        return item >= delNum;
+      });
+      numB = factorArr[random(factorArr.length-1)];
+      break;
+    case 1:
+      numB = random(numA - delNum) + delNum;
+      break;
+    default:
+      numB = random(totalNum) + delNum;
+      break;
   }
   numArr[1].textContent = numB;
   value = calc(numA, numB, symbol);
@@ -103,28 +115,39 @@ function gameStart() {
 
 //輸入答案換題目，並計算分數
 answer.addEventListener('keydown', (e) => {
-  if (e.keyCode === 13) {
-    if (parseInt(answer.value) === value) {
-      if (gameLv === 1 || gameLv === 2) {
-        totalScore += 1;
-      } else if (gameLv === 3) {
-        totalScore += 5;
+  switch (e.keyCode) {
+    case 13:
+      switch (parseInt(answer.value)) {
+        case value:
+          console.log('答對');
+          switch (gameLv) {
+            case 1:
+            case 2:
+              totalScore += 1;
+              break;
+            case 3:
+              totalScore += 5;
+          break;
+          }
+        break;
+        default:
+          console.log(totalScore);
+          if (totalScore > 0) {
+            totalScore--;
+          }
+          break;
       }
-    } else {
-      if (totalScore > 0) {
-        totalScore--;
+      if (totalScore < 10) {
+        scoreTxt = '00' + totalScore;
+      } else if (totalScore >= 10 && totalScore <100) {
+        scoreTxt = '0' + totalScore;
+      } else {
+        scoreTxt = totalScore;
       }
-    }
-    if (totalScore < 10) {
-      scoreTxt = '00' + totalScore;
-    } else if (totalScore >= 10 && totalScore <100) {
-      scoreTxt = '0' + totalScore;
-    } else {
-      scoreTxt = totalScore;
-    }
-    score.textContent = scoreTxt;
-    answer.value = '';
-    gameStart();
+      score.textContent = scoreTxt;
+      answer.value = '';
+      gameStart();
+      break;
   }
 })
 
