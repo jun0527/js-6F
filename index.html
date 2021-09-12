@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <title>60秒算數遊戲</title>
+  <link rel="stylesheet" href="css/all.css">
+</head>
+<body>
+  <main class="wrap">
+    <section class="js-startPage startPage">
+      <div>
+        <h1 class="titleArea">
+          <span class="secondsTxt">60</span>
+          <span>SECONDS<span class="symbol">+−×÷</span><br>CHALLENGE</span>
+        </h1>
+      </div>
+      <div class="buttonArea">
+        <button class="js-startBtn" type="button">START!</button>
+        <p>try to answer more as you can</p>
+      </div>
+    </section>
+    <section class="js-gamePage gamePage d-none">
+      <div class="d-flex jc-between">
+        <div>
+          <h2 class="title">60 SECONDS CHALLENGE</h2>
+          <div class="scoreArea">
+            <p>SCORE</p>
+            <span class="js-score">000</span>
+          </div>
+        </div>
+        <p class="js-time time">01 : 00</p>
+      </div>
+      <div class="js-gameArea gameArea fs-112">
+        <div>
+          <span data-value="11" class="js-num num">11</span>
+          <span class="js-symbol symbol">×</span>
+          <span data-value="12" class="js-num num">12</span>
+          <span class="equal">=</span>
+        </div>
+        <input type="text" class="answer fs-112">
+      </div>
+      <p class="answerMethod">press enter to answer</p>
+    </section>
+    <section class="js-endPage endPage d-none">
+      <div class="titleArea">
+        <h2 class="title">60 SECONDS CHALLENGE</h2>
+      </div>
+      <h3 class="scoreTitle"><span>—</span> YOUR FINAL SCORE <span>—</span></h3>
+      <p class="js-finalScore score">74</p>
+      <div class="buttonArea">
+        <button class="js-startBtn" type="button">TRY AGAIN!</button>
+      </div>
+    </section>
+  </main>
+  <script src="js/all.js"></script>
+</body>
+</html>

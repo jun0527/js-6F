@@ -1,0 +1,27 @@
+.d {
+  &-flex {
+    display: flex;
+  }
+  &-none {
+    display: none;
+  }
+  &-block {
+    display: block;
+  }
+}
+.jc {
+  &-between {
+    justify-content: space-between;
+  }
+}
+.fs {
+  &-112 {
+    font-size: 112px;
+  }
+  &-95 {
+    font-size: 95px;
+  }
+  &-70 {
+    font-size: 70px;
+  }
+}
