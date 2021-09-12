@@ -48,7 +48,6 @@ function reciprocal() {
 reciprocal();
 
 //根據遊戲進程隨機更換算式
-console.log(numArr[0].getAttribute('data-value'));
 function gameStart() {
   let numA;
   let numB;
@@ -84,7 +83,6 @@ function gameStart() {
     symbolArea.textContent = symbolArr[symbol];
   } else {
     symbol = random(3);
-    console.log(symbolArr[symbol]);
     symbolArea.textContent = symbolArr[symbol];
   }
   //第二個數字
@@ -93,7 +91,6 @@ function gameStart() {
     let factorArr = getAllFactor(numA).filter((item) => {
       return item >= delNum;
     });
-    console.log(factorArr);
     numB = factorArr[random(factorArr.length-1)];
   } else if (symbol === 1) {
     numB = random(numA - delNum) + delNum;
@@ -102,16 +99,11 @@ function gameStart() {
   }
   numArr[1].textContent = numB;
   value = calc(numA, numB, symbol);
-  console.log(value);
-  console.log(numA, numB, symbol);
 }
 
 //輸入答案換題目，並計算分數
 answer.addEventListener('keydown', (e) => {
   if (e.keyCode === 13) {
-    console.log('按下enter');
-    console.log(value);
-    console.log(answer.value);
     if (parseInt(answer.value) === value) {
       if (gameLv === 1 || gameLv === 2) {
         totalScore += 1;
@@ -147,7 +139,6 @@ function getAllFactor(num) {
     }
   }
   return factorArr;
-  console.log(factorArr);
 }
 
 //計算答案
