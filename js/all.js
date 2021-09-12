@@ -110,15 +110,19 @@ answer.addEventListener('keydown', (e) => {
       } else if (gameLv === 3) {
         totalScore += 5;
       }
-      if (totalScore < 10) {
-        scoreTxt = '00' + totalScore;
-      } else if (totalScore >= 10 && score <100) {
-        scoreTxt = '0' + totalScore;
-      } else {
-        scoreTxt = totalScore;
+    } else {
+      if (totalScore > 0) {
+        totalScore--;
       }
-      score.textContent = scoreTxt;
     }
+    if (totalScore < 10) {
+      scoreTxt = '00' + totalScore;
+    } else if (totalScore >= 10 && totalScore <100) {
+      scoreTxt = '0' + totalScore;
+    } else {
+      scoreTxt = totalScore;
+    }
+    score.textContent = scoreTxt;
     answer.value = '';
     gameStart();
   }
